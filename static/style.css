@@ -5,3 +5,9 @@ textarea {
 input[type="submit"] {
   margin-top: 10px;
 }
+
+.jumbotron {
+  background-image: url("images/배경3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
