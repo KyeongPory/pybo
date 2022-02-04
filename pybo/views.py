@@ -2,15 +2,21 @@ from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
 from .models import Question,Answer
 from django.utils import timezone
 from .forms import QuestionForm,AnswerForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
+    # 입력 파라미터
+    page = request.GET.get('page', '1') # 페이지
+    # 조회
     question_list = Question.objects.order_by('-create_date')
     total_count = Question.objects.count()
-    context = {
-        'question_list' : question_list,
-        'total_count':total_count
-    }
+    # 페이징처리
+    paginator = Paginator(question_list, 10) # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj,
+                'total_count':total_count}
+
     return render(request, 'pybo/question_list.html',context)
 
 def detail(request,question_id):
@@ -65,3 +71,4 @@ def question_create(request):
     
     context={'form':form}
     return render(request, 'pybo/question_form.html', context)
+

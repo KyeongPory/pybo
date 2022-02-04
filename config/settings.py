@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-dq4#*p$ky@^0*5z+awiv1im9%e(a9-&y6zy@jy$z+q$9!%sj82
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.35.99']
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 # Application definition
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pybo',
+    'common',
 ]
 
 MIDDLEWARE = [
